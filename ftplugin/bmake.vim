@@ -1,0 +1,32 @@
+" Vim filetype plugin file
+" Language:	BSD Makefile
+" Maintainer:	b-aaz <b-aazbsd@proton.me>
+" Last Change:	2026
+
+" Only do this when not done yet for this buffer
+if exists("b:did_ftplugin")
+  finish
+endif
+let b:did_ftplugin = 1
+
+let b:undo_ftplugin = "setl et< sts< sw< fo< com< cms< inc<"
+
+" Make sure a hard tab is used.
+setlocal noexpandtab softtabstop=0 shiftwidth=0
+
+" Set 'formatoptions' to break comment lines but not other lines,
+" and insert the comment leader when hitting <CR> or using "o".
+setlocal fo-=t fo+=croql
+
+" Set 'comments' to format dashed lists in comments
+setlocal com=sO:#\ -,mO:#\ \ ,b:#
+
+" Set 'commentstring' to put the marker after a #.
+setlocal commentstring=#\ %s
+
+" Including files.
+let &l:include = '^\s*\.include'
+
+if exists("loaded_matchit")
+	let b:match_words = '^\.\s*if\(def\|ndef\|make\|nmake\)\?\>:^\.\s*elif\(def\|ndef\|make\|nmake\)\?\>:^\.\s*else\>:^\.\s*endif\>,^\.\s*for\>:^\.\s*endfor\>'
+endif
